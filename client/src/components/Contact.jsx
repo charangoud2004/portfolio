@@ -9,7 +9,6 @@ function Contact() {
   const [formData, setFormData] = useState({
     from_name: '',
     from_email: '',
-    subject: '',
     message: ''
   })
   const [status, setStatus] = useState(null) // 'sending' | 'success' | 'error'
@@ -30,7 +29,7 @@ function Contact() {
         import.meta.env.VITE_EMAILJS_KEY
       )
       setStatus('success')
-      setFormData({ from_name: '', from_email: '', subject: '', message: '' })
+      setFormData({ from_name: '', from_email: '', message: '' })
       setTimeout(() => setStatus(null), 5000)
     } catch {
       setStatus('error')
@@ -89,17 +88,6 @@ function Contact() {
             placeholder="Your Email"
             required
             value={formData.from_email}
-            onChange={handleChange}
-            style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#00BCD4"}
-            onBlur={e => e.target.style.borderColor = "#1E1E1E"}
-          />
-          <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            required
-            value={formData.subject}
             onChange={handleChange}
             style={inputStyle}
             onFocus={e => e.target.style.borderColor = "#00BCD4"}
@@ -178,7 +166,7 @@ function Contact() {
         }}>
           {[
             { icon: <FiMail size={16} />, text: "k.charangoud2004@gmail.com", href: "mailto:k.charangoud2004@gmail.com" },
-            { icon: <FiLinkedin size={16} />, text: "linkedin.com/in/charangoud2004", href: "https://www.linkedin.com/in/charangoud2004/" },
+            { icon: <FiLinkedin size={16} />, text: "linkedin.com/in/charangoud2004", href: "https://linkedin.com/in/charangoud2004" },
             { icon: <FiGithub size={16} />, text: "github.com/charangoud2004", href: "https://github.com/charangoud2004" }
           ].map((link, i) => (
             <a

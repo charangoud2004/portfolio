@@ -21,7 +21,7 @@ function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
-        style={{ maxWidth: "700px", margin: "0 auto", width: "100%" }}
+        style={{ maxWidth: "700px", margin: "0 auto", width: "100%", paddingLeft: "clamp(2rem, 8vw, 6rem)" }}
       >
         {/* Status Badge */}
         <motion.div

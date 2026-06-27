@@ -7,6 +7,44 @@ function Footer() {
       padding: "2.5rem 1.5rem",
       textAlign: "center"
     }}>
+      {/* Hire Me CTA */}
+      <p style={{
+        color: "rgba(255,255,255,0.4)",
+        fontSize: "0.85rem",
+        marginBottom: "1rem"
+      }}>
+        Open to full-time roles & freelance projects
+      </p>
+      <a
+        href="#contact"
+        style={{
+          display: "inline-block",
+          background: "#00BCD4",
+          color: "#0A0A0A",
+          fontWeight: 700,
+          fontSize: "1rem",
+          padding: "0.75rem 2.5rem",
+          borderRadius: "8px",
+          border: "none",
+          cursor: "pointer",
+          textDecoration: "none",
+          transition: "all 0.2s ease",
+          marginBottom: "2rem"
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.background = "#00ACC1"
+          e.currentTarget.style.transform = "translateY(-2px)"
+          e.currentTarget.style.boxShadow = "0 6px 20px rgba(0,188,212,0.35)"
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.background = "#00BCD4"
+          e.currentTarget.style.transform = "translateY(0)"
+          e.currentTarget.style.boxShadow = "none"
+        }}
+      >
+        Hire Me →
+      </a>
+
       {/* Social icons */}
       <div style={{
         display: "flex",
@@ -16,7 +54,7 @@ function Footer() {
       }}>
         {[
           { icon: <FiGithub size={22} />, href: "https://github.com/charangoud2004" },
-          { icon: <FiLinkedin size={22} />, href: "https://www.linkedin.com/in/charangoud2004/" },
+          { icon: <FiLinkedin size={22} />, href: "https://linkedin.com/in/charangoud2004" },
           { icon: <FiMail size={22} />, href: "mailto:k.charangoud2004@gmail.com" }
         ].map((social, i) => (
           <a

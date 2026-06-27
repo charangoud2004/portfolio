@@ -22,10 +22,7 @@ function About() {
             lineHeight: 1.8,
             marginBottom: "1.25rem"
           }}>
-            I'm a final-year B.Tech student in Computer Science (AI & ML)
-            at Guru Nanak Institute of Technology, Hyderabad,
-            graduating in 2026. OCI Certified Cloud Developer
-            with a CGPA of 8.05.
+            I'm a Computer Science (AI & ML) graduate from Guru Nanak Institute of Technology, Hyderabad, with a CGPA of 8.16/10.
           </p>
           <p style={{
             color: "#B0B0B0",
@@ -88,13 +85,6 @@ function About() {
               CG
             </span>
           </div>
-          <p style={{
-            color: "#555555",
-            fontSize: "0.8rem",
-            marginTop: "12px"
-          }}>
-            Profile photo coming soon
-          </p>
         </div>
       </div>
     </SectionWrapper>
