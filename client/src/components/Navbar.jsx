@@ -2,7 +2,7 @@ import { useState } from "react"
 import { HiMenu, HiX } from "react-icons/hi"
 import { FiGithub } from "react-icons/fi"
 
-const links = ["About", "Experience", "Projects", "Skills", "Certifications", "Blog"]
+const links = ["About", "Experience", "Projects", "Skills", "Certifications"]
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)

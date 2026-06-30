@@ -5,14 +5,14 @@ const experience = [
   {
     role: "Full-Stack AI Engineer Intern",
     company: "Clothovia",
-    period: "Mar 2026 – Jun 2026",
+    period: "Mar 2026 – Jul 2026",
     location: "Kolkata (Remote)",
     type: "Internship",
     bullets: [
-      "Built and deployed a multi-agent system on AWS Bedrock using supervisor orchestration, sub-agents, and FastMCP tool servers",
-      "Developed backend communication using A2A, AG-UI protocols, REST integrations, and secure auth",
-      "Implemented Cognito OAuth2.0, SigV4 authentication, distributed deployment across AWS regions",
-      "Built responsive frontend pages and integrated UI workflows with backend services"
+      "Built and deployed a multi-agent system on AWS Bedrock using supervisor orchestration, sub-agents, and MCP tool servers (Python).",
+      "Developed backend communication workflows using A2A, AG-UI protocols, REST-based integrations, JSON handling, and secure authentication mechanisms.",
+      "Implemented cloud-based agent communication with Cognito OAuth2.0, SigV4 authentication, and distributed deployment across AWS regions.",
+      "Built full-stack components using React.js and Python/Node.js backend integrated with AI workflows."
     ]
   }
 ]

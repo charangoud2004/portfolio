@@ -17,12 +17,26 @@ function Hero() {
       alignItems: "center",
       padding: "0 1.5rem"
     }}>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-        style={{ maxWidth: "700px", margin: "0 auto", width: "100%", paddingLeft: "clamp(2rem, 8vw, 6rem)" }}
+      <div 
+        className="hero-grid"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto",
+          gap: "3rem",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          width: "100%",
+          alignItems: "center",
+          padding: "0 clamp(1rem, 4vw, 3rem)"
+        }}
       >
+        <motion.div
+          className="hero-content"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          style={{ maxWidth: "700px" }}
+        >
         {/* Status Badge */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -34,10 +48,11 @@ function Hero() {
             gap: "8px",
             border: "1px solid #00BCD4",
             borderRadius: "999px",
-            padding: "6px 16px",
+            padding: "6px 18px",
             marginBottom: "1.5rem",
             fontSize: "0.85rem",
-            color: "#00BCD4"
+            color: "#00BCD4",
+            whiteSpace: "nowrap"
           }}
         >
           <span style={{
@@ -45,7 +60,8 @@ function Hero() {
             height: "8px",
             borderRadius: "50%",
             backgroundColor: "#00BCD4",
-            animation: "pulse-dot 2s infinite"
+            animation: "pulse-dot 2s infinite",
+            flexShrink: 0
           }} />
           Open to Opportunities
         </motion.div>
@@ -190,6 +206,59 @@ function Hero() {
           ))}
         </motion.div>
       </motion.div>
+
+      {/* Profile Image */}
+      <motion.div
+        className="hero-image"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
+        style={{
+          position: "relative",
+          width: "clamp(250px, 30vw, 350px)",
+          height: "clamp(250px, 30vw, 350px)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }}
+      >
+        {/* Animated border */}
+        <div style={{
+          position: "absolute",
+          inset: "-4px",
+          background: "linear-gradient(45deg, #00BCD4, #26C6DA, #00BCD4)",
+          borderRadius: "50%",
+          animation: "spin 3s linear infinite",
+          zIndex: 0
+        }} />
+        
+        {/* Image container */}
+        <div style={{
+          position: "relative",
+          width: "100%",
+          height: "100%",
+          borderRadius: "50%",
+          overflow: "hidden",
+          border: "4px solid #0A0A0A",
+          zIndex: 1,
+          boxShadow: "0 20px 60px rgba(0, 188, 212, 0.3)"
+        }}>
+          <img
+            src="/src/components/charan.png"
+            alt="Charan Goud Kasula"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center 30%",
+              imageRendering: "-webkit-optimize-contrast",
+              backfaceVisibility: "hidden",
+              transform: "translateZ(0)"
+            }}
+          />
+        </div>
+      </motion.div>
+    </div>
     </section>
   )
 }
