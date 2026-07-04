@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 import useTypewriter from '../hooks/useTypewriter'
+import charanImg from './charan.png'
 
 function Hero() {
   const typedText = useTypewriter([
@@ -244,7 +245,7 @@ function Hero() {
           boxShadow: "0 20px 60px rgba(0, 188, 212, 0.3)"
         }}>
           <img
-            src="/src/components/charan.png"
+            src={charanImg}
             alt="Charan Goud Kasula"
             style={{
               width: "100%",
