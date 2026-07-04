@@ -28,12 +28,26 @@ function About() {
             color: "#B0B0B0",
             fontSize: "1.05rem",
             lineHeight: 1.8,
-            marginBottom: "2rem"
+            marginBottom: "1.25rem"
           }}>
             Currently interning as a Full-Stack AI Engineer at Clothovia,
-            where I build multi-agent AI systems on AWS Bedrock AgentCore,
-            implement A2A protocol workflows, and design product UI.
-            My stack is MERN for web and Python/FastAPI for AI work.
+            where I built a production multi-agent systems on the AWS Bedrock AgentCore -- a supervisor orchestrator that routes requests to dedicated sub-agents communicating via the A2A protocol, with MCP-based tool servers, Cognito OAuth2 authentication, semantic memory across sessions, and full distributed tracing with OpenTelemetry into CloudWatch. Currently working on product UI using Angular.
+          </p>
+          <p style={{
+            color: "#B0B0B0",
+            fontSize: "1.05rem",
+            lineHeight: 1.8,
+            marginBottom: "1.25rem"
+          }}>
+            I am also an Oracle Certified Developer.
+          </p>
+          <p style={{
+            color: "#B0B0B0",
+            fontSize: "1.05rem",
+            lineHeight: 1.8,
+            marginBottom: "2rem"
+          }}>
+            I'm a fresh graduate, but I come with real systems, a solid understanding of the agent infrastructure space, and the ability to move fast.
           </p>
 
           {/* Info pills */}
