@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react'
-import emailjs from 'emailjs-com'
 import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 import SectionWrapper from './SectionWrapper'
 import SectionHeading from './SectionHeading'
@@ -7,8 +6,8 @@ import SectionHeading from './SectionHeading'
 function Contact() {
   const formRef = useRef(null)
   const [formData, setFormData] = useState({
-    from_name: '',
-    from_email: '',
+    name: '',
+    email: '',
     message: ''
   })
   const [status, setStatus] = useState(null) // 'sending' | 'success' | 'error'
@@ -21,16 +20,24 @@ function Contact() {
     e.preventDefault()
     setStatus('sending')
 
+    const submissionData = new FormData(e.target)
+    submissionData.append("access_key", "14566db6-e6ec-4848-9212-0d770714df11")
+
     try {
-      await emailjs.send(
-        import.meta.env.VITE_EMAILJS_SERVICE,
-        import.meta.env.VITE_EMAILJS_TEMPLATE,
-        formData,
-        import.meta.env.VITE_EMAILJS_KEY
-      )
-      setStatus('success')
-      setFormData({ from_name: '', from_email: '', message: '' })
-      setTimeout(() => setStatus(null), 5000)
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: submissionData
+      })
+      const data = await response.json()
+
+      if (data.success) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setStatus(null), 5000)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus(null), 5000)
+      }
     } catch {
       setStatus('error')
       setTimeout(() => setStatus(null), 5000)
@@ -73,10 +80,10 @@ function Contact() {
         }}>
           <input
             type="text"
-            name="from_name"
+            name="name"
             placeholder="Your Name"
             required
-            value={formData.from_name}
+            value={formData.name}
             onChange={handleChange}
             style={inputStyle}
             onFocus={e => e.target.style.borderColor = "#00BCD4"}
@@ -84,10 +91,10 @@ function Contact() {
           />
           <input
             type="email"
-            name="from_email"
+            name="email"
             placeholder="Your Email"
             required
-            value={formData.from_email}
+            value={formData.email}
             onChange={handleChange}
             style={inputStyle}
             onFocus={e => e.target.style.borderColor = "#00BCD4"}

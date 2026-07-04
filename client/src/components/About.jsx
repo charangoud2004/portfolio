@@ -31,7 +31,7 @@ function About() {
             marginBottom: "1.25rem"
           }}>
             Currently interning as a Full-Stack AI Engineer at Clothovia,
-            where I built a production multi-agent systems on the AWS Bedrock AgentCore -- a supervisor orchestrator that routes requests to dedicated sub-agents communicating via the A2A protocol, with MCP-based tool servers, Cognito OAuth2 authentication, semantic memory across sessions, and full distributed tracing with OpenTelemetry into CloudWatch. Currently working on product UI using Angular.
+            where I built production multi-agent systems on the AWS Bedrock AgentCore — a supervisor orchestrator that routes requests to dedicated sub-agents communicating via the A2A protocol, with MCP-based tool servers, Cognito OAuth2 authentication, semantic memory across sessions, and full distributed tracing with OpenTelemetry into CloudWatch. Currently working on product UI using Angular.
           </p>
           <p style={{
             color: "#B0B0B0",

@@ -12,8 +12,11 @@ function Navbar() {
       position: "fixed",
       top: 0,
       width: "100%",
-      zIndex: 100,
+      zIndex: 999,
+      transform: "translateZ(0)",
+      WebkitTransform: "translateZ(0)",
       backdropFilter: "blur(10px)",
+      WebkitBackdropFilter: "blur(10px)",
       backgroundColor: "rgba(10,10,10,0.8)",
       borderBottom: "1px solid rgba(0,188,212,0.1)"
     }}>
