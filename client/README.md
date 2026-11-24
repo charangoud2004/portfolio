@@ -23,6 +23,8 @@ npm run lint
 | About text, hero headline and stats | `src/components/About.jsx`, `src/components/Hero.jsx` |
 | Resume PDF | `public/resume.pdf` |
 | Page title, description, social-preview tags | `index.html` |
+| Link-preview image (1200×630) | `public/og-image.jpg` |
+| Live URL (canonical, sitemap, robots) | `index.html`, `public/sitemap.xml`, `public/robots.txt` |
 | Colors, fonts, spacing (design tokens) | top of `src/index.css` |
 
 ## How it fits together

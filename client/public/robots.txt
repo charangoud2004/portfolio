@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://charankasula.vercel.app/sitemap.xml
