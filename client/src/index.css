@@ -490,16 +490,22 @@ img { display: block; max-width: 100%; }
 .role-bullets li { position: relative; padding-left: 18px; color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; }
 .role-bullets li::before { content: ""; position: absolute; left: 2px; top: 0.7em; width: 6px; height: 1px; background: var(--text-subtle); }
 
+.subsection-title {
+  margin: 56px 0 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.edu-list { list-style: none; padding: 0 32px; }
 .edu {
-  margin-top: 20px;
-  padding: 24px 32px;
+  padding: 22px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
 }
-.edu-label { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-subtle); margin-bottom: 4px; }
+.edu + .edu { border-top: 1px solid var(--border); }
 .edu-degree { font-weight: 600; letter-spacing: -0.01em; }
 .edu-school { color: var(--text-muted); font-size: 0.9rem; }
 .edu-side { text-align: right; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-subtle); }
@@ -515,6 +521,8 @@ img { display: block; max-width: 100%; }
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 .project:hover { border-color: var(--border-strong); background: #131317; }
+.project.is-wide { grid-column: 1 / -1; }
+.project.is-wide .project-summary { max-width: 880px; }
 
 .project-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
 .project-kind { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-subtle); margin-bottom: 8px; }
@@ -568,12 +576,14 @@ img { display: block; max-width: 100%; }
   place-items: center;
   background: var(--surface-2);
   border: 1px solid var(--border-strong);
-  color: #F87171;
+  color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.04em;
 }
+.cert-badge.is-oracle { color: #F87171; }
+.cert-list { display: flex; flex-direction: column; gap: 16px; }
 .cert-title { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em; }
 .cert-sub { color: var(--text-muted); font-size: 0.92rem; margin-top: 2px; }
 .cert-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text-subtle); margin-top: 8px; }
@@ -667,7 +677,9 @@ img { display: block; max-width: 100%; }
   .role { padding-left: 30px; }
   .metric { padding: 12px; }
   .metric dt { font-size: 1rem; }
-  .edu { padding: 20px 22px; }
+  .edu-list { padding: 0 22px; }
+  .edu { padding: 18px 0; }
+  .subsection-title { margin-top: 44px; }
   .edu-side { text-align: left; }
   .form-row { grid-template-columns: 1fr; }
 

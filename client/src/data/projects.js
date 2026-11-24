@@ -28,5 +28,21 @@ export const projects = [
     tags: ["React", "Node.js", "Azure Functions", "Blob Storage", "Static Web Apps"],
     liveUrl: "https://victorious-wave-01ebab000.3.azurestaticapps.net",
     githubUrl: "https://github.com/charangoud2004/qr-as-a-service"
+  },
+  {
+    id: 3,
+    title: "Travello",
+    tagline: "Full-stack accommodation listing platform, inspired by Airbnb",
+    kind: "Side project",
+    wide: true,
+    summary: "Users browse stays, sign up, post their own listings with photos and leave 1–5 star reviews. Built as an MVC app on Express and MongoDB Atlas with server-rendered EJS views. Passport handles login with sessions stored in MongoDB, middleware checks that only owners can edit listings and only authors can delete reviews, Joi validates every form, and deleting a listing also removes its reviews.",
+    metrics: [
+      { value: "Passport", label: "session login, stored in MongoDB" },
+      { value: "Owner checks", label: "on listing edits and review deletes" },
+      { value: "Cloudinary", label: "image uploads through Multer" }
+    ],
+    tags: ["Node.js", "Express", "MongoDB Atlas", "Mongoose", "EJS", "Passport.js", "Joi", "Cloudinary", "Bootstrap"],
+    liveUrl: "https://travello-v7ib.onrender.com",
+    githubUrl: "https://github.com/charangoud2004/travello-travel-platform"
   }
 ]

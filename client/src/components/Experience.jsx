@@ -33,12 +33,20 @@ const companies = [
   }
 ]
 
-const education = {
-  degree: "B.Tech Computer Science (AI & ML)",
-  school: "Guru Nanak Institute of Technology, Hyderabad",
-  period: "2022 – 2026",
-  score: "8.16 / 10"
-}
+const education = [
+  {
+    degree: "B.Tech Computer Science (AI & ML)",
+    school: "Guru Nanak Institute of Technology, Hyderabad",
+    period: "2022 – 2026",
+    score: "CGPA 8.16 / 10"
+  },
+  {
+    degree: "Intermediate (MPC)",
+    school: "Sri Chaitanya Junior College, Hyderabad",
+    period: "2020 – 2022",
+    score: "95.7%"
+  }
+]
 
 function Experience() {
   return (
@@ -46,7 +54,7 @@ function Experience() {
       <SectionHeading
         index="02"
         label="Experience"
-        title="Where I've worked"
+        title="Work and education"
         subtitle="Joined as an intern, promoted to a full-time engineer five months later."
       />
 
@@ -87,17 +95,21 @@ function Experience() {
         </article>
       ))}
 
-      <div className="card edu">
-        <div>
-          <p className="edu-label">Education</p>
-          <p className="edu-degree">{education.degree}</p>
-          <p className="edu-school">{education.school}</p>
-        </div>
-        <div className="edu-side">
-          <strong>CGPA {education.score}</strong>
-          {education.period}
-        </div>
-      </div>
+      <h3 className="subsection-title">Education</h3>
+      <ul className="card edu-list">
+        {education.map(edu => (
+          <li className="edu" key={edu.degree}>
+            <div>
+              <p className="edu-degree">{edu.degree}</p>
+              <p className="edu-school">{edu.school}</p>
+            </div>
+            <div className="edu-side">
+              <strong>{edu.score}</strong>
+              {edu.period}
+            </div>
+          </li>
+        ))}
+      </ul>
     </SectionWrapper>
   )
 }

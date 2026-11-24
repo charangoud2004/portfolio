@@ -12,7 +12,7 @@ const item = {
 
 function ProjectCard({ project }) {
   return (
-    <motion.article variants={item} className="card project">
+    <motion.article variants={item} className={`card project${project.wide ? " is-wide" : ""}`}>
       <div className="project-top">
         <div>
           <p className="project-kind">{project.kind}</p>
