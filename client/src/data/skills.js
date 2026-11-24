@@ -1,59 +1,29 @@
 export const skillGroups = [
   {
     category: "Languages",
-    skills: [
-      "JavaScript", "Python", "Java"
-    ]
+    skills: ["JavaScript", "TypeScript", "Java", "Python"]
   },
   {
     category: "Frontend",
-    skills: [
-      "React.js", "HTML", "CSS",
-      "Tailwind CSS", "Bootstrap"
-    ]
+    skills: ["Angular", "React.js", "HTML", "CSS/SCSS", "Bootstrap"]
   },
   {
-    category: "Backend",
-    skills: [
-      "Node.js", "Express.js", "FastAPI",
-      "REST APIs", "MongoDB", "MySQL"
-    ]
+    category: "Backend & Databases",
+    skills: ["Node.js", "Express.js", "FastAPI", "REST APIs", "MongoDB", "MySQL", "DynamoDB"]
   },
   {
     category: "Cloud & DevOps",
     skills: [
-      "AWS Bedrock", "AWS AgentCore", "AWS DynamoDB",
-      "Oracle Cloud (OCI)", "Microsoft Azure",
-      "Azure Functions", "Blob Storage",
-      "GitHub Actions", "CI/CD", "Docker"
+      "AWS Bedrock", "AWS AgentCore", "AWS Cognito",
+      "Azure Functions", "Azure Blob Storage",
+      "Oracle Cloud (OCI)", "GitHub Actions", "CI/CD"
     ]
   },
   {
-    category: "AI & Agentic",
+    category: "AI & Tools",
     skills: [
-      "Agentic AI", "MCP/FastMCP", "LangChain",
-      "RAG", "LLM Workflows", "Generative AI",
-      "Vector Databases", "Large Language Models",
-      "Hugging Face", "A2A Protocol", "AG-UI Protocol"
-    ]
-  },
-  {
-    category: "Developer Tools",
-    skills: [
-      "Git", "GitHub", "Cursor",
-      "GitHub Copilot", "Codex",
-      "Jira", "Slack", "Claude"
-    ]
-  },
-  {
-    category: "Core CS",
-    skills: [
-      "Data Structures & Algorithms",
-      "Operating Systems",
-      "Computer Networks",
-      "DBMS", "OOP",
-      "Full-Stack Development",
-      "Cloud Computing"
+      "Agentic AI", "LangChain", "RAG", "MCP/FastMCP", "LLM Integration",
+      "Claude Code", "Cursor", "Codex", "Git", "Jira"
     ]
   }
 ]

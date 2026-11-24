@@ -5,10 +5,9 @@ import charanImg from './charan.png'
 
 function Hero() {
   const typedText = useTypewriter([
+    "Software Engineer",
     "Full-Stack Developer",
-    "Cloud Engineer",
-    "Agentic AI Builder",
-    "MERN Developer"
+    "Agentic AI Builder"
   ])
 
   return (
@@ -118,8 +117,8 @@ function Hero() {
             marginBottom: "2rem"
           }}
         >
-          Building scalable web apps, cloud-native systems,
-          and AI-powered products from Hyderabad, India.
+          Associate Software Engineer at Clothovia, building AI agent
+          platforms, full-stack products and cloud systems from Hyderabad, India.
         </motion.p>
 
         {/* CTA Buttons */}

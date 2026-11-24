@@ -69,7 +69,7 @@ function Contact() {
           marginBottom: "2.5rem",
           marginTop: "-1.5rem"
         }}>
-          Open to full-time roles, internships, and freelance projects.
+          Open to full-time roles and freelance projects.
           Based in Hyderabad — available for remote work worldwide.
         </p>
 

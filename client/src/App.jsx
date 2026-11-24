@@ -13,10 +13,10 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Charan Goud Kasula — Full-Stack & AI Engineer</title>
+        <title>Charan Goud Kasula — Software Engineer</title>
         <meta
           name="description"
-          content="Portfolio of Charan Goud Kasula, Full-Stack Developer, Cloud Engineer and Agentic AI Builder based in Hyderabad, India."
+          content="Portfolio of Charan Goud Kasula, Associate Software Engineer and OCI Certified Developer building Angular and React apps, FastAPI and Node.js backends, and multi-agent AI systems on AWS Bedrock. Based in Hyderabad, India."
         />
       </Helmet>
       <Navbar />

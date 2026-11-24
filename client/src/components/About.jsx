@@ -22,7 +22,7 @@ function About() {
             lineHeight: 1.8,
             marginBottom: "1.25rem"
           }}>
-            I'm a Computer Science (AI & ML) graduate from Guru Nanak Institute of Technology, Hyderabad, with a CGPA of 8.16/10.
+            I'm an Associate Software Engineer at Clothovia and an Oracle Cloud Infrastructure Certified Developer Professional. I build Angular and React applications, FastAPI and Node.js backends, and multi-agent AI systems on AWS Bedrock.
           </p>
           <p style={{
             color: "#B0B0B0",
@@ -30,8 +30,7 @@ function About() {
             lineHeight: 1.8,
             marginBottom: "1.25rem"
           }}>
-            Currently interning as a Full-Stack AI Engineer at Clothovia,
-            where I built production multi-agent systems on the AWS Bedrock AgentCore — a supervisor orchestrator that routes requests to dedicated sub-agents communicating via the A2A protocol, with MCP-based tool servers, Cognito OAuth2 authentication, semantic memory across sessions, and full distributed tracing with OpenTelemetry into CloudWatch. Currently working on product UI using Angular.
+            I joined Clothovia as an intern in March 2026 and moved into a full-time role in August. Today I build enterprise features for Hive Console, an AI agent management platform: the compliance center, approval workflows, audit logs and observability dashboards. I also built a revenue operations platform in Angular that spans 7 workspaces, from lead generation to customer success.
           </p>
           <p style={{
             color: "#B0B0B0",
@@ -39,7 +38,7 @@ function About() {
             lineHeight: 1.8,
             marginBottom: "1.25rem"
           }}>
-            I am also an Oracle Certified Developer.
+            As an intern I built and deployed a multi-agent travel planner on Amazon Bedrock AgentCore: a supervisor that routes queries over A2A to sub-agents with FastMCP tools, semantic memory, OpenTelemetry tracing and Cognito OAuth 2.0/SigV4 auth.
           </p>
           <p style={{
             color: "#B0B0B0",
@@ -47,7 +46,7 @@ function About() {
             lineHeight: 1.8,
             marginBottom: "2rem"
           }}>
-            I'm a fresh graduate, but I come with real systems, a solid understanding of the agent infrastructure space, and the ability to move fast.
+            Outside work, I build products end to end, like Whofy, which ranks 60,000+ live tech jobs against your resume, and a serverless QR code service on Azure.
           </p>
 
           {/* Info pills */}
@@ -58,7 +57,7 @@ function About() {
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: "10px", color: "#888888" }}>
               <HiOutlineAcademicCap size={18} style={{ color: "#00BCD4" }} />
-              <span style={{ fontSize: "0.95rem" }}>B.Tech CSE (AI & ML), GNIT — 2026</span>
+              <span style={{ fontSize: "0.95rem" }}>B.Tech CSE (AI & ML), GNIT — 2026, CGPA 8.16</span>
             </div>
           </div>
         </div>

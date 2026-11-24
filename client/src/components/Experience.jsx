@@ -3,16 +3,24 @@ import SectionHeading from './SectionHeading'
 
 const experience = [
   {
-    role: "Full-Stack AI Engineer Intern",
+    role: "Associate Software Engineer",
+    company: "Clothovia",
+    period: "Aug 2026 – Present",
+    type: "Full-time",
+    bullets: [
+      "Built a revenue operations platform in Angular covering 7 workspaces, from lead generation through sales, finance, onboarding and customer success, with reusable tables, filters, dashboards and role-based auth guards.",
+      "Building enterprise (B2B) features for Hive Console, including the compliance center, approval workflows, audit logs and observability dashboards."
+    ]
+  },
+  {
+    role: "Full Stack Engineer Intern",
     company: "Clothovia",
     period: "Mar 2026 – Jul 2026",
     location: "Kolkata (Remote)",
     type: "Internship",
     bullets: [
-      "Built and deployed a multi-agent system on AWS Bedrock using supervisor orchestration, sub-agents, and MCP tool servers (Python).",
-      "Developed backend communication workflows using A2A, AG-UI protocols, REST-based integrations, JSON handling, and secure authentication mechanisms.",
-      "Implemented cloud-based agent communication with Cognito OAuth2.0, SigV4 authentication, and distributed deployment across AWS regions.",
-      "Built full-stack components using React.js and Python/Node.js backend integrated with AI workflows."
+      "Built and deployed a multi-agent travel planner on Amazon Bedrock AgentCore: a supervisor routes queries via A2A to two sub-agents using FastMCP tools, with semantic memory, OpenTelemetry and Cognito OAuth 2.0/SigV4 auth.",
+      "Built Angular UI modules for Hive Console, an AI agent management platform with individual (B2C) and enterprise (B2B) users, including the agent builder, monitoring dashboards, libraries and role-based access."
     ]
   }
 ]
@@ -20,15 +28,9 @@ const experience = [
 const education = [
   {
     degree: "B.Tech Computer Science (AI & ML)",
-    school: "Guru Nanak Institute of Technology",
+    school: "Guru Nanak Institute of Technology, Hyderabad",
     period: "2022 – 2026",
     score: "CGPA: 8.16"
-  },
-  {
-    degree: "M.P.C.",
-    school: "Sri Chaitanya Junior College, Hyderabad",
-    period: "2020 – 2022",
-    score: "GPA: 9.57"
   }
 ]
 
@@ -100,7 +102,9 @@ function Experience() {
                     {exp.type}
                   </span>
                   <p style={{ color: "#888888", fontSize: "0.85rem" }}>{exp.period}</p>
-                  <p style={{ color: "#666666", fontSize: "0.8rem" }}>{exp.location}</p>
+                  {exp.location && (
+                    <p style={{ color: "#666666", fontSize: "0.8rem" }}>{exp.location}</p>
+                  )}
                 </div>
               </div>
 
