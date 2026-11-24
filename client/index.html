@@ -3,12 +3,58 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Charan Goud Kasula — Software Engineer</title>
+    <meta name="description" content="Charan Goud Kasula, Associate Software Engineer and OCI Certified Developer building full-stack apps and multi-agent AI systems on AWS. Hyderabad, India." />
+    <meta name="author" content="Charan Goud Kasula" />
     <meta name="theme-color" content="#0B0B0D" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Pick the theme before first paint (saved choice, else system setting) so the page never flashes -->
+    <script>
+      (function () {
+        var t
+        try { t = localStorage.getItem('theme') } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+        }
+        document.documentElement.dataset.theme = t
+        if (t === 'light') {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#FAFAF8')
+        }
+      })()
+    </script>
+
+    <!-- Social previews (LinkedIn, X, WhatsApp, Slack) -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Charan Goud Kasula" />
+    <meta property="og:title" content="Charan Goud Kasula — Software Engineer" />
+    <meta property="og:description" content="Associate Software Engineer building AI agent platforms and full-stack products with Angular, React, FastAPI and AWS Bedrock." />
+    <meta property="profile:first_name" content="Charan Goud" />
+    <meta property="profile:last_name" content="Kasula" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Charan Goud Kasula — Software Engineer" />
+    <meta name="twitter:description" content="Associate Software Engineer building AI agent platforms and full-stack products with Angular, React, FastAPI and AWS Bedrock." />
+
+    <!-- Structured data for search engines -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Charan Goud Kasula",
+        "jobTitle": "Associate Software Engineer",
+        "worksFor": { "@type": "Organization", "name": "Clothovia" },
+        "address": { "@type": "PostalAddress", "addressLocality": "Hyderabad", "addressCountry": "IN" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Guru Nanak Institute of Technology" },
+        "sameAs": [
+          "https://github.com/charangoud2004",
+          "https://www.linkedin.com/in/charangoud2004/"
+        ]
+      }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <title>Charan Goud Kasula — Software Engineer</title>
   </head>
   <body>
     <div id="root"></div>

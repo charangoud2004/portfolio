@@ -23,7 +23,7 @@ function About() {
           </p>
           <p>
             I joined Clothovia as an intern in March 2026 and moved into a full-time role in August.
-            Today I build enterprise features for <strong>Hive Console</strong>, an AI agent management
+            Today I build enterprise features for <strong>Abstrive</strong>, an AI agent management
             platform: the compliance center, approval workflows, audit logs and observability dashboards.
             I also built a revenue operations platform in Angular that spans 7 workspaces, from lead
             generation to customer success.

@@ -1,15 +1,16 @@
 import { useState } from 'react'
-import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { FiArrowUpRight } from 'react-icons/fi'
 import SectionWrapper from './SectionWrapper'
 import SectionHeading from './SectionHeading'
+import { socialIcons } from './socialIcons'
+import { profile, socials } from '../data/profile'
 
-const EMAIL = "k.charangoud2004@gmail.com"
+// Web3Forms public access key: it only lets the form send to my inbox, so it is safe in client code.
+const WEB3FORMS_KEY = "14566db6-e6ec-4848-9212-0d770714df11"
+const EMAIL = profile.email
 
-const directLinks = [
-  { icon: FiMail, label: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
-  { icon: FiLinkedin, label: "LinkedIn", value: "linkedin.com/in/charangoud2004", href: "https://linkedin.com/in/charangoud2004" },
-  { icon: FiGithub, label: "GitHub", value: "github.com/charangoud2004", href: "https://github.com/charangoud2004" }
-]
+// Email first, then LinkedIn and GitHub
+const directLinks = ["email", "linkedin", "github"].map(id => socials.find(s => s.id === id))
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
@@ -24,7 +25,7 @@ function Contact() {
     setStatus('sending')
 
     const submissionData = new FormData(e.target)
-    submissionData.append("access_key", "14566db6-e6ec-4848-9212-0d770714df11")
+    submissionData.append("access_key", WEB3FORMS_KEY)
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -57,20 +58,24 @@ function Contact() {
           />
 
           <ul className="contact-links">
-            {directLinks.map(({ icon: Icon, label, value, href }) => (
-              <li key={label}>
-                <a
-                  href={href}
-                  target={href.startsWith("mailto") ? undefined : "_blank"}
-                  rel="noopener noreferrer"
-                >
-                  <Icon size={17} aria-hidden="true" />
-                  <span className="label">{label}</span>
-                  <span className="value">{value}</span>
-                  <FiArrowUpRight size={15} className="arrow" aria-hidden="true" />
-                </a>
-              </li>
-            ))}
+            {directLinks.map(({ id, label, display, href }) => {
+              const Icon = socialIcons[id]
+              const external = !href.startsWith("mailto")
+              return (
+                <li key={id}>
+                  <a
+                    href={href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noopener noreferrer" : undefined}
+                  >
+                    <Icon size={17} aria-hidden="true" />
+                    <span className="label">{label}</span>
+                    <span className="value">{display}</span>
+                    <FiArrowUpRight size={15} className="arrow" aria-hidden="true" />
+                  </a>
+                </li>
+              )
+            })}
           </ul>
         </div>
 

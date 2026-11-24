@@ -4,7 +4,7 @@ export const projects = [
     title: "Whofy",
     tagline: "We hunt opportunity for you",
     kind: "Side project · Co-built",
-    summary: "A platform that ranks live tech jobs against your uploaded resume. A scheduled pipeline pulls jobs twice a day from company career pages (Greenhouse, Lever, Workday) through APIs and web scraping, sped up with multithreading and multiprocessing. Includes Groq LLM resume parsing, a help chatbot and Supabase auth.",
+    summary: "I conceived and co-built a platform that ranks live tech jobs against your uploaded resume. A scheduled pipeline pulls fresh jobs twice a day from company career pages (Greenhouse, Lever, Workday) through their APIs and web scraping, and moving it to multithreading and multiprocessing cut each run from over an hour to about 12 minutes. Groq LLM parses resumes, a help chatbot answers questions, and Supabase handles sign-in.",
     metrics: [
       { value: "60K+", label: "live jobs ranked" },
       { value: "260+", label: "career pages tracked" },
@@ -19,22 +19,21 @@ export const projects = [
     title: "QR-as-a-Service",
     tagline: "Serverless QR code generation on Azure",
     kind: "Side project",
-    summary: "A cloud-native SaaS for on-demand QR code generation. A serverless Azure Functions backend stores images in Blob Storage, and the React frontend ships to Azure Static Web Apps through GitHub Actions CI/CD.",
+    summary: "Paste any URL and get a QR code that keeps working. A serverless Azure Function renders a 300×300 PNG, uploads it to Blob Storage under a unique name and returns a permanent public link instead of a temporary image. The React frontend on Azure Static Web Apps adds one-click download and copy-link, and GitHub Actions deploys every push.",
     metrics: [
       { value: "10K+", label: "QR codes a month, by design" },
       { value: "Free tier", label: "near-zero running cost" },
       { value: "CI/CD", label: "GitHub Actions deploys" }
     ],
-    tags: ["React", "Node.js", "Azure Functions", "Blob Storage", "Static Web Apps"],
+    tags: ["React", "Node.js", "Azure Functions", "Blob Storage", "Static Web Apps", "GitHub Actions"],
     liveUrl: "https://victorious-wave-01ebab000.3.azurestaticapps.net",
     githubUrl: "https://github.com/charangoud2004/qr-as-a-service"
   },
   {
     id: 3,
     title: "Travello",
-    tagline: "Full-stack accommodation listing platform, inspired by Airbnb",
+    tagline: "Full-stack property listing platform, inspired by Airbnb",
     kind: "Side project",
-    wide: true,
     summary: "Users browse stays, sign up, post their own listings with photos and leave 1–5 star reviews. Built as an MVC app on Express and MongoDB Atlas with server-rendered EJS views. Passport handles login with sessions stored in MongoDB, middleware checks that only owners can edit listings and only authors can delete reviews, Joi validates every form, and deleting a listing also removes its reviews.",
     metrics: [
       { value: "Passport", label: "session login, stored in MongoDB" },

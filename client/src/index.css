@@ -1,7 +1,8 @@
-@import "tailwindcss";
-
 /* ───────────────────────── Design tokens ───────────────────────── */
+/* Dark theme (default). The light theme below only overrides the color tokens.
+   The active theme is set as data-theme on <html> by the script in index.html. */
 :root {
+  color-scheme: dark;
   --bg: #0B0B0D;
   --surface: #111114;
   --surface-2: #16161A;
@@ -10,12 +11,11 @@
 
   --text: #EDEDF0;
   --text-muted: #A1A1AA;
-  --text-subtle: #6E6E78;
+  --text-subtle: #80808A;
 
   --accent: #5EEAD4;
   --accent-hover: #99F6E4;
-  --accent-soft: rgba(94, 234, 212, 0.08);
-  --accent-line: rgba(94, 234, 212, 0.35);
+  --on-accent: #04211D;            /* text on accent-filled buttons */
   --success: #4ADE80;
   --danger: #F87171;
 
@@ -28,6 +28,36 @@
   --container: 1120px;
   --gutter: 24px;
   --nav-h: 64px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Derived colors: computed from the tokens above, so a palette only sets the base tokens */
+  --accent-soft: color-mix(in srgb, var(--accent) 8%, transparent);
+  --accent-line: color-mix(in srgb, var(--accent) 35%, transparent);
+  --accent-glow: color-mix(in srgb, var(--accent) 10%, transparent);
+  --selection: color-mix(in srgb, var(--accent) 25%, transparent);
+  --border-hover: color-mix(in srgb, var(--text) 24%, var(--bg));
+  --surface-hover: color-mix(in srgb, var(--surface) 60%, var(--surface-2));
+  --grid-line: color-mix(in srgb, var(--text) 4%, transparent);
+  --glass: color-mix(in srgb, var(--bg) 82%, transparent);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #FAFAF8;
+  --surface: #FFFFFF;
+  --surface-2: #F3F2EE;
+  --border: #E4E2DC;
+  --border-strong: #D3D0C8;
+
+  --text: #18181B;
+  --text-muted: #52525B;
+  --text-subtle: #6B6B75;
+
+  --accent: #0F766E;
+  --accent-hover: #115E59;
+  --on-accent: #FFFFFF;
+  --success: #16A34A;
+  --danger: #DC2626;
 }
 
 /* ───────────────────────── Base ───────────────────────── */
@@ -50,7 +80,10 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
-img { display: block; max-width: 100%; }
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, h4 { font-size: inherit; font-weight: inherit; }
+ul, ol { list-style: none; }
+button, input, textarea { font: inherit; color: inherit; }
 
 :focus-visible {
   outline: 2px solid var(--accent);
@@ -58,15 +91,33 @@ img { display: block; max-width: 100%; }
   border-radius: 4px;
 }
 
-::selection { background: rgba(94, 234, 212, 0.25); color: var(--text); }
+::selection { background: var(--selection); color: var(--text); }
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 8px; }
-::-webkit-scrollbar-thumb:hover { background: #45454f; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
+
+/* ───────────────────────── Motion ───────────────────────── */
+/* Scroll reveal: <Reveal> adds .is-visible once the element enters the viewport */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Page-load entrance for the hero; stagger with style={{ '--d': '120ms' }} */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: none; }
+}
+.rise { animation: rise 0.7s var(--ease) both; animation-delay: var(--d, 0ms); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .rise { animation: none; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
 
 /* ───────────────────────── Layout primitives ───────────────────────── */
@@ -137,12 +188,12 @@ img { display: block; max-width: 100%; }
 }
 .btn-sm { height: 36px; padding: 0 14px; font-size: 0.85rem; }
 
-.btn-primary { background: var(--accent); color: #04211D; }
+.btn-primary { background: var(--accent); color: var(--on-accent); }
 .btn-primary:hover { background: var(--accent-hover); }
 .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .btn-secondary { background: transparent; color: var(--text); border-color: var(--border-strong); }
-.btn-secondary:hover { background: var(--surface-2); border-color: #4a4a54; }
+.btn-secondary:hover { background: var(--surface-2); border-color: var(--border-hover); }
 
 .chip {
   display: inline-flex;
@@ -203,7 +254,7 @@ img { display: block; max-width: 100%; }
 }
 .nav.is-scrolled,
 .nav.is-open {
-  background: rgba(11, 11, 13, 0.82);
+  background: var(--glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom-color: var(--border);
@@ -211,18 +262,7 @@ img { display: block; max-width: 100%; }
 .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 
 .nav-brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -0.01em; }
-.nav-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  background: var(--accent);
-  color: #04211D;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-}
+.logo { flex-shrink: 0; }
 
 .nav-links { display: flex; align-items: center; gap: 4px; list-style: none; }
 .nav-link {
@@ -237,6 +277,8 @@ img { display: block; max-width: 100%; }
 .nav-link.is-active { color: var(--text); background: var(--surface-2); }
 
 .nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.theme-toggle { width: 36px; height: 36px; background: transparent; cursor: pointer; }
 
 .nav-toggle {
   display: none;
@@ -273,8 +315,8 @@ img { display: block; max-width: 100%; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 30%, transparent 75%);
@@ -287,7 +329,7 @@ img { display: block; max-width: 100%; }
   right: -120px;
   width: 640px;
   height: 640px;
-  background: radial-gradient(circle, rgba(94, 234, 212, 0.10), transparent 65%);
+  background: radial-gradient(circle, var(--accent-glow), transparent 65%);
   pointer-events: none;
 }
 .hero > .container { position: relative; z-index: 1; }
@@ -307,7 +349,7 @@ img { display: block; max-width: 100%; }
   padding: 0 12px;
   border-radius: 999px;
   border: 1px solid var(--border-strong);
-  background: rgba(17, 17, 20, 0.7);
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
   color: var(--text-muted);
   font-size: 0.8rem;
   margin-bottom: 28px;
@@ -377,10 +419,10 @@ img { display: block; max-width: 100%; }
   gap: 8px;
   padding: 8px 12px;
   border-radius: 10px;
-  background: rgba(11, 11, 13, 0.78);
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
   font-size: 0.78rem;
   color: var(--text);
 }
@@ -392,7 +434,7 @@ img { display: block; max-width: 100%; }
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: rgba(17, 17, 20, 0.6);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
 }
 .hero-stat { padding: 22px 24px; }
 .hero-stat + .hero-stat { border-left: 1px solid var(--border); }
@@ -512,7 +554,44 @@ img { display: block; max-width: 100%; }
 .edu-side strong { display: block; color: var(--text); font-weight: 500; font-size: 0.9rem; }
 
 /* ───────────────────────── Projects ───────────────────────── */
-.projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.projects-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+  margin-bottom: 56px;
+}
+.projects-head .section-head { margin-bottom: 0; }
+.carousel-controls { display: flex; gap: 8px; flex-shrink: 0; }
+.carousel-controls .icon-link { width: 42px; height: 42px; background: transparent; cursor: pointer; }
+.carousel-controls .icon-link:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+
+/* Horizontal, snap-scrolling project track; the next card peeks in to hint there is more.
+   Cards use subgrid, so their 4 parts (header, summary, numbers, tags) share rows and line up
+   across cards no matter how long each description is. */
+.carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(470px, 86%);
+  grid-template-rows: repeat(4, auto);
+  column-gap: 20px;
+  row-gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 0;
+  overscroll-behavior-x: contain;
+  padding-bottom: 6px;
+  scrollbar-width: none;
+}
+.carousel::-webkit-scrollbar { display: none; }
+.carousel:focus-visible { outline-offset: 6px; border-radius: var(--radius-lg); }
+.carousel > .project {
+  display: grid;
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  row-gap: 0;
+  scroll-snap-align: start;
+}
 
 .project {
   display: flex;
@@ -520,11 +599,12 @@ img { display: block; max-width: 100%; }
   padding: 28px;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
-.project:hover { border-color: var(--border-strong); background: #131317; }
-.project.is-wide { grid-column: 1 / -1; }
-.project.is-wide .project-summary { max-width: 880px; }
+.project:hover { border-color: var(--border-strong); background: var(--surface-hover); }
 
-.project-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+/* Title on the left, links on the right, tagline across the full card width below them */
+.project-top { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 16px; align-items: start; }
+.project-top .project-links { grid-column: 2; grid-row: 1; }
+.project-top .project-tagline { grid-column: 1 / -1; grid-row: 2; }
 .project-kind { font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-subtle); margin-bottom: 8px; }
 .project-title { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.025em; line-height: 1.25; }
 .project-tagline { margin-top: 4px; color: var(--text-muted); font-size: 0.92rem; }
@@ -545,7 +625,7 @@ img { display: block; max-width: 100%; }
 .metric dt { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); white-space: nowrap; }
 .metric dd { margin-top: 2px; font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
 
-.project .chip-list { margin-top: auto; }
+.project .chip-list { align-self: start; }
 
 /* ───────────────────────── Skills ───────────────────────── */
 .skills { padding: 4px 32px; }
@@ -582,7 +662,7 @@ img { display: block; max-width: 100%; }
   font-weight: 500;
   letter-spacing: 0.04em;
 }
-.cert-badge.is-oracle { color: #F87171; }
+.cert-badge.is-oracle { color: var(--danger); }
 .cert-list { display: flex; flex-direction: column; gap: 16px; }
 .cert-title { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em; }
 .cert-sub { color: var(--text-muted); font-size: 0.92rem; margin-top: 2px; }
@@ -659,7 +739,7 @@ img { display: block; max-width: 100%; }
   .hero-stat:nth-child(n + 3) { border-top: 1px solid var(--border); }
 
   .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects-head { margin-bottom: 36px; }
   .skill-row { grid-template-columns: 1fr; gap: 12px; }
 }
 
@@ -672,6 +752,8 @@ img { display: block; max-width: 100%; }
   .hero-actions .btn { flex: 1; }
 
   .company, .project, .form { padding: 22px; }
+  .carousel-controls { display: none; }
+  .carousel { column-gap: 14px; }
   .skills { padding: 4px 22px; }
   .facts { padding: 4px 20px; }
   .role { padding-left: 30px; }

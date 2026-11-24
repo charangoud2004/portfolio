@@ -1,16 +1,35 @@
-# React + Vite
+# Portfolio — Charan Goud Kasula
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio site built with React 19 and Vite. Plain CSS, no UI framework.
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev      # local dev server
+npm run build    # production build into dist/
+npm run lint
+```
 
-## React Compiler
+## Where to edit things
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| What | File |
+| --- | --- |
+| Name, email, social links, resume path | `src/data/profile.js` |
+| Work history and education | `src/data/experience.js` |
+| Projects | `src/data/projects.js` |
+| Skills | `src/data/skills.js` |
+| Certifications | `src/data/certifications.js` |
+| About text, hero headline and stats | `src/components/About.jsx`, `src/components/Hero.jsx` |
+| Resume PDF | `public/resume.pdf` |
+| Page title, description, social-preview tags | `index.html` |
+| Colors, fonts, spacing (design tokens) | top of `src/index.css` |
 
-## Expanding the ESLint configuration
+## How it fits together
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/App.jsx` lists the sections in page order.
+- Each section is a component in `src/components/`, wrapped in `SectionWrapper`
+  (section padding + scroll fade-in) with a `SectionHeading`.
+- Scroll animations use `Reveal` (IntersectionObserver + a CSS transition); the hero
+  uses the `.rise` CSS keyframe. Both are turned off for visitors who prefer reduced motion.
+- The contact form posts to Web3Forms.
