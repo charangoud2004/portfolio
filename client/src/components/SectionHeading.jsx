@@ -1,16 +1,9 @@
-function SectionHeading({ title }) {
+function SectionHeading({ index, label, title, subtitle }) {
   return (
-    <div style={{ marginBottom: "3rem" }}>
-      <h2 style={{ fontSize: "2rem", fontWeight: 700, color: "#F5F5F5" }}>
-        {title}
-      </h2>
-      <div style={{
-        width: "48px",
-        height: "3px",
-        backgroundColor: "#00BCD4",
-        marginTop: "8px",
-        borderRadius: "2px"
-      }} />
+    <div className="section-head">
+      <p className="eyebrow">{index} / {label}</p>
+      <h2 className="section-title">{title}</h2>
+      {subtitle && <p className="section-subtitle">{subtitle}</p>}
     </div>
   )
 }

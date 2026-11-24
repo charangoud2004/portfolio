@@ -1,4 +1,5 @@
 import { HelmetProvider, Helmet } from 'react-helmet-async'
+import { MotionConfig } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -19,17 +20,19 @@ function App() {
           content="Portfolio of Charan Goud Kasula, Associate Software Engineer and OCI Certified Developer building Angular and React apps, FastAPI and Node.js backends, and multi-agent AI systems on AWS Bedrock. Based in Hyderabad, India."
         />
       </Helmet>
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Experience />
-        <Projects />
-        <Skills />
-        <Certifications />
-        <Contact />
-      </main>
-      <Footer />
+      <MotionConfig reducedMotion="user">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Experience />
+          <Projects />
+          <Skills />
+          <Certifications />
+          <Contact />
+        </main>
+        <Footer />
+      </MotionConfig>
     </HelmetProvider>
   )
 }

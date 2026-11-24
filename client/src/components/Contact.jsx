@@ -1,15 +1,18 @@
-import { useState, useRef } from 'react'
-import { FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { useState } from 'react'
+import { FiArrowUpRight, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
 import SectionWrapper from './SectionWrapper'
 import SectionHeading from './SectionHeading'
 
+const EMAIL = "k.charangoud2004@gmail.com"
+
+const directLinks = [
+  { icon: FiMail, label: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
+  { icon: FiLinkedin, label: "LinkedIn", value: "linkedin.com/in/charangoud2004", href: "https://linkedin.com/in/charangoud2004" },
+  { icon: FiGithub, label: "GitHub", value: "github.com/charangoud2004", href: "https://github.com/charangoud2004" }
+]
+
 function Contact() {
-  const formRef = useRef(null)
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState(null) // 'sending' | 'success' | 'error'
 
   const handleChange = (e) => {
@@ -33,171 +36,101 @@ function Contact() {
       if (data.success) {
         setStatus('success')
         setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => setStatus(null), 5000)
       } else {
         setStatus('error')
-        setTimeout(() => setStatus(null), 5000)
       }
     } catch {
       setStatus('error')
-      setTimeout(() => setStatus(null), 5000)
     }
-  }
-
-  const inputStyle = {
-    width: "100%",
-    backgroundColor: "#111111",
-    border: "1px solid #1E1E1E",
-    borderRadius: "8px",
-    padding: "0.75rem 1rem",
-    color: "#F5F5F5",
-    fontSize: "0.95rem",
-    fontFamily: "'Inter', sans-serif",
-    outline: "none",
-    transition: "border-color 0.2s ease"
+    setTimeout(() => setStatus(null), 5000)
   }
 
   return (
     <SectionWrapper id="contact">
-      <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-        <SectionHeading title="Let's Work Together" />
-
-        <p style={{
-          color: "#888888",
-          fontSize: "1rem",
-          lineHeight: 1.7,
-          marginBottom: "2.5rem",
-          marginTop: "-1.5rem"
-        }}>
-          Open to full-time roles and freelance projects.
-          Based in Hyderabad — available for remote work worldwide.
-        </p>
-
-        <form ref={formRef} onSubmit={handleSubmit} style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem"
-        }}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-            value={formData.name}
-            onChange={handleChange}
-            style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#00BCD4"}
-            onBlur={e => e.target.style.borderColor = "#1E1E1E"}
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            required
-            value={formData.email}
-            onChange={handleChange}
-            style={inputStyle}
-            onFocus={e => e.target.style.borderColor = "#00BCD4"}
-            onBlur={e => e.target.style.borderColor = "#1E1E1E"}
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            required
-            rows={5}
-            value={formData.message}
-            onChange={handleChange}
-            style={{ ...inputStyle, resize: "vertical", minHeight: "120px" }}
-            onFocus={e => e.target.style.borderColor = "#00BCD4"}
-            onBlur={e => e.target.style.borderColor = "#1E1E1E"}
+      <div className="contact-grid">
+        <div className="contact-intro">
+          <SectionHeading
+            index="06"
+            label="Contact"
+            title="Let's work together"
+            subtitle="Open to full-time roles and freelance projects. Based in Hyderabad, available for remote work worldwide."
           />
 
-          <button
-            type="submit"
-            disabled={status === 'sending'}
-            style={{
-              width: "100%",
-              backgroundColor: status === 'sending' ? "#0097A7" : "#00BCD4",
-              color: "#0A0A0A",
-              border: "none",
-              borderRadius: "8px",
-              padding: "14px",
-              fontSize: "1rem",
-              fontWeight: 600,
-              fontFamily: "'Inter', sans-serif",
-              cursor: status === 'sending' ? "not-allowed" : "pointer",
-              transition: "background-color 0.2s ease",
-              marginTop: "0.5rem"
-            }}
-            onMouseEnter={e => {
-              if (status !== 'sending') e.target.style.backgroundColor = "#26C6DA"
-            }}
-            onMouseLeave={e => {
-              if (status !== 'sending') e.target.style.backgroundColor = "#00BCD4"
-            }}
-          >
-            {status === 'sending' ? 'Sending...' : 'Send Message'}
+          <ul className="contact-links">
+            {directLinks.map(({ icon: Icon, label, value, href }) => (
+              <li key={label}>
+                <a
+                  href={href}
+                  target={href.startsWith("mailto") ? undefined : "_blank"}
+                  rel="noopener noreferrer"
+                >
+                  <Icon size={17} aria-hidden="true" />
+                  <span className="label">{label}</span>
+                  <span className="value">{value}</span>
+                  <FiArrowUpRight size={15} className="arrow" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <form onSubmit={handleSubmit} className="card form">
+          <div className="form-row">
+            <div className="field">
+              <label htmlFor="contact-name">Name</label>
+              <input
+                id="contact-name"
+                type="text"
+                name="name"
+                placeholder="Your name"
+                autoComplete="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="contact-email">Email</label>
+              <input
+                id="contact-email"
+                type="email"
+                name="email"
+                placeholder="you@company.com"
+                autoComplete="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="field">
+            <label htmlFor="contact-message">Message</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              placeholder="Tell me about the role or project"
+              required
+              rows={6}
+              value={formData.message}
+              onChange={handleChange}
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+            {status === 'sending' ? 'Sending…' : 'Send message'}
           </button>
 
-          {/* Status messages */}
-          {status === 'success' && (
-            <p style={{
-              color: "#4CAF50",
-              fontSize: "0.9rem",
-              textAlign: "center",
-              marginTop: "0.5rem"
-            }}>
-              ✓ Message sent! I'll get back to you soon.
-            </p>
-          )}
-          {status === 'error' && (
-            <p style={{
-              color: "#F44336",
-              fontSize: "0.9rem",
-              textAlign: "center",
-              marginTop: "0.5rem"
-            }}>
-              Something went wrong. Email me directly at k.charangoud2004@gmail.com
-            </p>
-          )}
+          <div aria-live="polite">
+            {status === 'success' && (
+              <p className="form-status ok">Message sent. I'll get back to you soon.</p>
+            )}
+            {status === 'error' && (
+              <p className="form-status err">
+                Something went wrong. Email me directly at <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+              </p>
+            )}
+          </div>
         </form>
-
-        {/* Direct contact links */}
-        <div style={{
-          marginTop: "2.5rem",
-          paddingTop: "2rem",
-          borderTop: "1px solid #1E1E1E",
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.75rem"
-        }}>
-          {[
-            { icon: <FiMail size={16} />, text: "k.charangoud2004@gmail.com", href: "mailto:k.charangoud2004@gmail.com" },
-            { icon: <FiLinkedin size={16} />, text: "linkedin.com/in/charangoud2004", href: "https://linkedin.com/in/charangoud2004" },
-            { icon: <FiGithub size={16} />, text: "github.com/charangoud2004", href: "https://github.com/charangoud2004" }
-          ].map((link, i) => (
-            <a
-              key={i}
-              href={link.href}
-              target={link.href.startsWith("mailto") ? undefined : "_blank"}
-              rel="noopener noreferrer"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                color: "#888888",
-                textDecoration: "none",
-                fontSize: "0.9rem",
-                transition: "color 0.2s ease"
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = "#00BCD4"}
-              onMouseLeave={e => e.currentTarget.style.color = "#888888"}
-            >
-              {link.icon}
-              {link.text}
-            </a>
-          ))}
-        </div>
       </div>
     </SectionWrapper>
   )

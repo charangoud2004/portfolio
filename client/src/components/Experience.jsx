@@ -1,184 +1,101 @@
 import SectionWrapper from './SectionWrapper'
 import SectionHeading from './SectionHeading'
 
-const experience = [
+const companies = [
   {
-    role: "Associate Software Engineer",
     company: "Clothovia",
-    period: "Aug 2026 – Present",
-    type: "Full-time",
-    bullets: [
-      "Built a revenue operations platform in Angular covering 7 workspaces, from lead generation through sales, finance, onboarding and customer success, with reusable tables, filters, dashboards and role-based auth guards.",
-      "Building enterprise (B2B) features for Hive Console, including the compliance center, approval workflows, audit logs and observability dashboards."
-    ]
-  },
-  {
-    role: "Full Stack Engineer Intern",
-    company: "Clothovia",
-    period: "Mar 2026 – Jul 2026",
-    location: "Kolkata (Remote)",
-    type: "Internship",
-    bullets: [
-      "Built and deployed a multi-agent travel planner on Amazon Bedrock AgentCore: a supervisor routes queries via A2A to two sub-agents using FastMCP tools, with semantic memory, OpenTelemetry and Cognito OAuth 2.0/SigV4 auth.",
-      "Built Angular UI modules for Hive Console, an AI agent management platform with individual (B2C) and enterprise (B2B) users, including the agent builder, monitoring dashboards, libraries and role-based access."
+    summary: "AI agent management and revenue operations products",
+    period: "Mar 2026 – Present",
+    roles: [
+      {
+        title: "Associate Software Engineer",
+        period: "Aug 2026 – Present",
+        type: "Full-time",
+        current: true,
+        bullets: [
+          "Built a revenue operations platform in Angular covering 7 workspaces, from lead generation through sales, finance, onboarding and customer success, with reusable tables, filters, dashboards and role-based auth guards.",
+          "Building enterprise (B2B) features for Hive Console, including the compliance center, approval workflows, audit logs and observability dashboards."
+        ],
+        tags: ["Angular", "TypeScript", "SCSS", "RBAC", "Dashboards"]
+      },
+      {
+        title: "Full Stack Engineer Intern",
+        period: "Mar 2026 – Jul 2026",
+        type: "Internship",
+        location: "Kolkata (Remote)",
+        bullets: [
+          "Built and deployed a multi-agent travel planner on Amazon Bedrock AgentCore: a supervisor routes queries via A2A to two sub-agents using FastMCP tools, with semantic memory, OpenTelemetry and Cognito OAuth 2.0/SigV4 auth.",
+          "Built Angular UI modules for Hive Console, an AI agent management platform with individual (B2C) and enterprise (B2B) users, including the agent builder, monitoring dashboards, libraries and role-based access."
+        ],
+        tags: ["Bedrock AgentCore", "A2A", "FastMCP", "OpenTelemetry", "Cognito", "Angular"]
+      }
     ]
   }
 ]
 
-const education = [
-  {
-    degree: "B.Tech Computer Science (AI & ML)",
-    school: "Guru Nanak Institute of Technology, Hyderabad",
-    period: "2022 – 2026",
-    score: "CGPA: 8.16"
-  }
-]
+const education = {
+  degree: "B.Tech Computer Science (AI & ML)",
+  school: "Guru Nanak Institute of Technology, Hyderabad",
+  period: "2022 – 2026",
+  score: "8.16 / 10"
+}
 
 function Experience() {
   return (
     <SectionWrapper id="experience">
-      <SectionHeading title="Experience" />
+      <SectionHeading
+        index="02"
+        label="Experience"
+        title="Where I've worked"
+        subtitle="Joined as an intern, promoted to a full-time engineer five months later."
+      />
 
-      {/* Timeline */}
-      <div style={{ position: "relative", paddingLeft: "32px" }}>
-        {/* Vertical line */}
-        <div style={{
-          position: "absolute",
-          left: "7px",
-          top: "8px",
-          bottom: "8px",
-          width: "2px",
-          backgroundColor: "#00BCD4",
-          opacity: 0.3
-        }} />
+      {companies.map(c => (
+        <article className="card company" key={c.company}>
+          <header className="company-head">
+            <div className="company-id">
+              <span className="company-logo" aria-hidden="true">{c.company[0]}</span>
+              <div>
+                <h3 className="company-name">{c.company}</h3>
+                <p className="company-sub">{c.summary}</p>
+              </div>
+            </div>
+            <span className="company-period">{c.period}</span>
+          </header>
 
-        {experience.map((exp, i) => (
-          <div key={i} style={{ position: "relative", marginBottom: "2rem" }}>
-            {/* Dot */}
-            <div style={{
-              position: "absolute",
-              left: "-29px",
-              top: "8px",
-              width: "12px",
-              height: "12px",
-              borderRadius: "50%",
-              backgroundColor: "#00BCD4",
-              border: "3px solid #0A0A0A"
-            }} />
-
-            {/* Content */}
-            <div style={{
-              backgroundColor: "#111111",
-              border: "1px solid #1E1E1E",
-              borderRadius: "12px",
-              padding: "1.5rem"
-            }}>
-              <div style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-start",
-                flexWrap: "wrap",
-                gap: "0.5rem",
-                marginBottom: "0.5rem"
-              }}>
-                <div>
-                  <h3 style={{ color: "#F5F5F5", fontSize: "1.15rem", fontWeight: 600 }}>
-                    {exp.role}
-                  </h3>
-                  <p style={{ color: "#00BCD4", fontSize: "0.95rem", marginTop: "2px" }}>
-                    {exp.company}
-                  </p>
-                </div>
-                <div style={{ textAlign: "right" }}>
-                  <span style={{
-                    display: "inline-block",
-                    border: "1px solid #00BCD4",
-                    color: "#00BCD4",
-                    fontSize: "0.75rem",
-                    padding: "3px 10px",
-                    borderRadius: "999px",
-                    marginBottom: "4px"
-                  }}>
-                    {exp.type}
+          <ol className="roles">
+            {c.roles.map(role => (
+              <li className={`role${role.current ? " is-current" : ""}`} key={role.title}>
+                <div className="role-head">
+                  <h4 className="role-title">
+                    {role.title}
+                    <span className="role-type">{role.type}</span>
+                  </h4>
+                  <span className="role-period">
+                    {role.period}{role.location ? ` · ${role.location}` : ""}
                   </span>
-                  <p style={{ color: "#888888", fontSize: "0.85rem" }}>{exp.period}</p>
-                  {exp.location && (
-                    <p style={{ color: "#666666", fontSize: "0.8rem" }}>{exp.location}</p>
-                  )}
                 </div>
-              </div>
+                <ul className="role-bullets">
+                  {role.bullets.map((b, i) => <li key={i}>{b}</li>)}
+                </ul>
+                <div className="chip-list">
+                  {role.tags.map(t => <span className="chip" key={t}>{t}</span>)}
+                </div>
+              </li>
+            ))}
+          </ol>
+        </article>
+      ))}
 
-              <ul style={{
-                listStyle: "none",
-                marginTop: "1rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "0.6rem"
-              }}>
-                {exp.bullets.map((bullet, j) => (
-                  <li key={j} style={{
-                    color: "#B0B0B0",
-                    fontSize: "0.9rem",
-                    lineHeight: 1.6,
-                    paddingLeft: "16px",
-                    position: "relative"
-                  }}>
-                    <span style={{
-                      position: "absolute",
-                      left: 0,
-                      color: "#00BCD4"
-                    }}>▹</span>
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Education */}
-      <div style={{ marginTop: "3.5rem" }}>
-        <h3 style={{
-          fontSize: "1.4rem",
-          fontWeight: 600,
-          color: "#F5F5F5",
-          marginBottom: "1.5rem"
-        }}>
-          Education
-        </h3>
-
-        <div style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "1.25rem"
-        }}>
-          {education.map((edu, i) => (
-            <div key={i} style={{
-              backgroundColor: "#111111",
-              border: "1px solid #1E1E1E",
-              borderRadius: "12px",
-              padding: "1.5rem",
-              borderLeft: "4px solid #00BCD4",
-              transition: "border-color 0.2s ease"
-            }}>
-              <h4 style={{ color: "#F5F5F5", fontSize: "1.05rem", fontWeight: 600, marginBottom: "6px" }}>
-                {edu.degree}
-              </h4>
-              <p style={{ color: "#888888", fontSize: "0.9rem", marginBottom: "4px" }}>
-                {edu.school}
-              </p>
-              <div style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginTop: "10px",
-                fontSize: "0.85rem"
-              }}>
-                <span style={{ color: "#666666" }}>{edu.period}</span>
-                <span style={{ color: "#00BCD4", fontWeight: 600 }}>{edu.score}</span>
-              </div>
-            </div>
-          ))}
+      <div className="card edu">
+        <div>
+          <p className="edu-label">Education</p>
+          <p className="edu-degree">{education.degree}</p>
+          <p className="edu-school">{education.school}</p>
+        </div>
+        <div className="edu-side">
+          <strong>CGPA {education.score}</strong>
+          {education.period}
         </div>
       </div>
     </SectionWrapper>

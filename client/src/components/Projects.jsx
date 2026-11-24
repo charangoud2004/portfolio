@@ -1,176 +1,85 @@
 import { motion } from 'framer-motion'
-import { FiExternalLink, FiGithub } from 'react-icons/fi'
+import { FiArrowUpRight, FiGithub } from 'react-icons/fi'
 import SectionWrapper from './SectionWrapper'
 import SectionHeading from './SectionHeading'
 import { projects } from '../data/projects'
 
-const containerVariants = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-}
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+const container = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } }
+const item = {
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }
 }
 
 function ProjectCard({ project }) {
-  const isComingSoon = !project.liveUrl && !project.githubUrl
-
   return (
-    <motion.div
-      variants={cardVariants}
-      style={{
-        backgroundColor: isComingSoon ? "transparent" : "#111111",
-        border: isComingSoon ? "2px dashed #1E1E1E" : "1px solid #1E1E1E",
-        borderRadius: "12px",
-        padding: "1.5rem",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        transition: "border-color 0.2s ease, box-shadow 0.2s ease",
-        cursor: isComingSoon ? "default" : "pointer",
-        minHeight: "280px"
-      }}
-      onMouseEnter={e => {
-        if (!isComingSoon) {
-          e.currentTarget.style.borderColor = "#00BCD4"
-          e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 188, 212, 0.08)"
-        }
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.borderColor = isComingSoon ? "#1E1E1E" : "#1E1E1E"
-        e.currentTarget.style.boxShadow = "none"
-      }}
-    >
-      <div>
-        <h3 style={{
-          color: isComingSoon ? "#888888" : "#F5F5F5",
-          fontSize: "1.2rem",
-          fontWeight: 600,
-          marginBottom: "0.75rem"
-        }}>
-          {project.title}
-        </h3>
-        <p style={{
-          color: "#888888",
-          fontSize: "0.9rem",
-          lineHeight: 1.6,
-          marginBottom: "1.25rem"
-        }}>
-          {project.description}
-        </p>
-
-        {/* Tags */}
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "1.25rem" }}>
-          {project.tags.map(tag => (
-            <span key={tag} style={{
-              backgroundColor: tag === "In Progress" ? "rgba(0, 188, 212, 0.1)" : "#1a1a1a",
-              border: `1px solid ${tag === "In Progress" ? "#00BCD4" : "#1E1E1E"}`,
-              color: tag === "In Progress" ? "#00BCD4" : "#B0B0B0",
-              padding: "4px 10px",
-              borderRadius: "6px",
-              fontSize: "0.75rem"
-            }}>
-              {tag}
-            </span>
-          ))}
+    <motion.article variants={item} className="card project">
+      <div className="project-top">
+        <div>
+          <p className="project-kind">{project.kind}</p>
+          <h3 className="project-title">{project.title}</h3>
+          <p className="project-tagline">{project.tagline}</p>
         </div>
-      </div>
-
-      {/* Buttons */}
-      {!isComingSoon && (
-        <div style={{ display: "flex", gap: "0.75rem" }}>
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                border: "1px solid #00BCD4",
-                color: "#00BCD4",
-                padding: "8px 16px",
-                borderRadius: "6px",
-                textDecoration: "none",
-                fontSize: "0.8rem",
-                fontWeight: 500,
-                transition: "all 0.2s ease"
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = "#00BCD4"
-                e.currentTarget.style.color = "#0A0A0A"
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.backgroundColor = "transparent"
-                e.currentTarget.style.color = "#00BCD4"
-              }}
-            >
-              <FiExternalLink size={14} />
-              Live Demo
-            </a>
-          )}
+        <div className="project-links">
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                border: "1px solid #555555",
-                color: "#B0B0B0",
-                padding: "8px 16px",
-                borderRadius: "6px",
-                textDecoration: "none",
-                fontSize: "0.8rem",
-                fontWeight: 500,
-                transition: "all 0.2s ease"
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.borderColor = "#F5F5F5"
-                e.currentTarget.style.color = "#F5F5F5"
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.borderColor = "#555555"
-                e.currentTarget.style.color = "#B0B0B0"
-              }}
+              className="icon-link"
+              aria-label={`${project.title} source code on GitHub`}
             >
-              <FiGithub size={14} />
-              GitHub
+              <FiGithub size={16} />
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-secondary btn-sm"
+              aria-label={`Open ${project.title} live demo`}
+            >
+              Live <FiArrowUpRight size={14} aria-hidden="true" />
             </a>
           )}
         </div>
-      )}
-    </motion.div>
+      </div>
+
+      <p className="project-summary">{project.summary}</p>
+
+      <dl className="metrics">
+        {project.metrics.map(m => (
+          <div className="metric" key={m.label}>
+            <dt>{m.value}</dt>
+            <dd>{m.label}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <div className="chip-list">
+        {project.tags.map(tag => <span className="chip" key={tag}>{tag}</span>)}
+      </div>
+    </motion.article>
   )
 }
 
 function Projects() {
   return (
     <SectionWrapper id="projects">
-      <SectionHeading title="Projects" />
+      <SectionHeading
+        index="03"
+        label="Projects"
+        title="Things I've built on my own"
+        subtitle="Live products I designed, built and deployed end to end."
+      />
       <motion.div
-        variants={containerVariants}
+        className="projects-grid"
+        variants={container}
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-80px" }}
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-          gap: "1.5rem"
-        }}
       >
-        {projects.map(project => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
+        {projects.map(project => <ProjectCard key={project.id} project={project} />)}
       </motion.div>
     </SectionWrapper>
   )

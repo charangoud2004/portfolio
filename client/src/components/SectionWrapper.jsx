@@ -1,21 +1,18 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 
 function SectionWrapper({ children, id }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-80px" })
-
   return (
-    <motion.section
-      id={id}
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      style={{ padding: "5rem 1.5rem", maxWidth: "1100px", margin: "0 auto" }}
-    >
-      {children}
-    </motion.section>
+    <section id={id} className="section">
+      <motion.div
+        className="container"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {children}
+      </motion.div>
+    </section>
   )
 }
 
