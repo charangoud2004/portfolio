@@ -11,7 +11,11 @@ function Certifications() {
       <div className="cert-list">
         {certifications.map(cert => (
           <article className="card cert" key={cert.title}>
-            <span className={`cert-badge ${cert.badgeClass}`} aria-hidden="true">{cert.badge}</span>
+            {cert.logo ? (
+              <img className="cert-logo" src={cert.logo} alt={`${cert.issuerName} logo`} width="64" height="64" loading="lazy" />
+            ) : (
+              <span className="cert-badge" aria-hidden="true">{cert.badge}</span>
+            )}
             <div>
               <h3 className="cert-title">{cert.title}</h3>
               <p className="cert-sub">{cert.issuer}</p>

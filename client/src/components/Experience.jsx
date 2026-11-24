@@ -1,3 +1,4 @@
+import { FiArrowUpRight } from 'react-icons/fi'
 import SectionWrapper from './SectionWrapper'
 import SectionHeading from './SectionHeading'
 import { companies, education } from '../data/experience'
@@ -16,9 +17,20 @@ function Experience() {
         <article className="card company" key={c.company}>
           <header className="company-head">
             <div className="company-id">
-              <span className="company-logo" aria-hidden="true">{c.company[0]}</span>
+              {c.logo ? (
+                <img className="company-logo" src={c.logo} alt={`${c.company} logo`} width="44" height="44" />
+              ) : (
+                <span className="company-logo" aria-hidden="true">{c.company[0]}</span>
+              )}
               <div>
-                <h3 className="company-name">{c.company}</h3>
+                <h3 className="company-name">
+                  {c.url ? (
+                    <a href={c.url} target="_blank" rel="noopener noreferrer" className="company-link">
+                      {c.company} <FiArrowUpRight size={15} aria-hidden="true" />
+                      <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
+                    </a>
+                  ) : c.company}
+                </h3>
                 <p className="company-sub">{c.summary}</p>
               </div>
             </div>

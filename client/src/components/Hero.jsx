@@ -17,12 +17,7 @@ function Hero() {
       <div className="container">
         <div className="hero-grid">
           <div>
-            <p className="hero-status rise" style={{ '--d': '50ms' }}>
-              <span className="dot" aria-hidden="true" />
-              Open to opportunities
-            </p>
-
-            <h1 className="hero-name rise" style={{ '--d': '120ms' }}>
+            <h1 className="hero-name rise" style={{ '--d': '80ms' }}>
               {profile.name}
             </h1>
 

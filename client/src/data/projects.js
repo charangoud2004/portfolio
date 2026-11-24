@@ -8,7 +8,7 @@ export const projects = [
     metrics: [
       { value: "60K+", label: "live jobs ranked" },
       { value: "260+", label: "career pages tracked" },
-      { value: "60 → 12 min", label: "pipeline runtime" }
+      { value: "60\u00A0→\u00A012\u00A0min", label: "pipeline runtime" }
     ],
     tags: ["React", "FastAPI", "MongoDB", "Groq LLM", "Supabase", "Web scraping"],
     liveUrl: "https://whofy.vercel.app",
@@ -22,7 +22,7 @@ export const projects = [
     summary: "Paste any URL and get a QR code that keeps working. A serverless Azure Function renders a 300×300 PNG, uploads it to Blob Storage under a unique name and returns a permanent public link instead of a temporary image. The React frontend on Azure Static Web Apps adds one-click download and copy-link, and GitHub Actions deploys every push.",
     metrics: [
       { value: "10K+", label: "QR codes a month, by design" },
-      { value: "Free tier", label: "near-zero running cost" },
+      { value: "Free\u00A0tier", label: "near-zero running cost" },
       { value: "CI/CD", label: "GitHub Actions deploys" }
     ],
     tags: ["React", "Node.js", "Azure Functions", "Blob Storage", "Static Web Apps", "GitHub Actions"],
@@ -31,6 +31,21 @@ export const projects = [
   },
   {
     id: 3,
+    title: "Slack Knowledge Bot",
+    tagline: "AI knowledge base for your team, inside Slack",
+    kind: "Hackathon project",
+    summary: "Upload a PDF, Word file, web page or Slack thread, then ask about it without leaving Slack. Documents are split into chunks, embedded locally with MiniLM and stored in ChromaDB, kept separate for personal, team and org-wide knowledge. Llama 3.3 on Groq answers only from the matching chunks, cites its sources and says so when the answer isn't there. It also summarises documents, auto-tags them by topic and remembers recent turns for follow-up questions.",
+    metrics: [
+      { value: "RAG", label: "answers grounded in your documents" },
+      { value: "3 scopes", label: "personal, team and org-wide" },
+      { value: "5 sources", label: "PDF, Word, web, text and threads" }
+    ],
+    tags: ["Python", "Slack Bolt", "LangChain", "ChromaDB", "Groq LLM", "Hugging Face"],
+    liveUrl: null,
+    githubUrl: "https://github.com/charangoud2004/slack-native-bot"
+  },
+  {
+    id: 4,
     title: "Travello",
     tagline: "Full-stack property listing platform, inspired by Airbnb",
     kind: "Side project",

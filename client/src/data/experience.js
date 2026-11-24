@@ -1,6 +1,10 @@
+import clothoviaLogo from '../assets/logos/clothovia.webp'
+
 export const companies = [
   {
     company: "Clothovia",
+    logo: clothoviaLogo,
+    url: "https://www.linkedin.com/company/clothovia/",
     summary: "AI agent management and revenue operations products",
     period: "Mar 2026 – Present",
     roles: [
@@ -10,10 +14,10 @@ export const companies = [
         type: "Full-time",
         current: true,
         bullets: [
-          "Built a revenue operations platform in Angular covering 7 workspaces, from lead generation through sales, finance, onboarding and customer success, with reusable tables, filters, dashboards and role-based auth guards.",
-          "Building enterprise (B2B) features for Abstrive, including the compliance center, approval workflows, audit logs and observability dashboards."
+          "Building Abstrive end to end for business and individual users, connecting the Angular console to backend APIs on AWS, with DynamoDB tables provisioned through Terraform and secured with Cognito and KMS.",
+          "Built a revenue operations platform in Angular covering 7 workspaces, from lead generation through sales, finance, onboarding and customer success, with reusable tables, filters, dashboards and role-based auth guards."
         ],
-        tags: ["Angular", "TypeScript", "SCSS", "RBAC", "Dashboards"]
+        tags: ["Angular", "TypeScript", "Node.js", "REST APIs", "AWS", "DynamoDB", "Terraform", "RBAC"]
       },
       {
         title: "Full Stack Engineer Intern",

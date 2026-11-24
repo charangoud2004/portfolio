@@ -168,6 +168,7 @@ button, input, textarea { font: inherit; color: inherit; }
 }
 
 .mono { font-family: var(--font-mono); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* ───────────────────────── Buttons & chips ───────────────────────── */
 .btn {
@@ -341,26 +342,6 @@ button, input, textarea { font: inherit; color: inherit; }
   align-items: center;
 }
 
-.hero-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 30px;
-  padding: 0 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  background: color-mix(in srgb, var(--surface) 70%, transparent);
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  margin-bottom: 28px;
-}
-.hero-status .dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--success);
-  box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
-}
 
 .hero-name {
   font-size: clamp(2.6rem, 6vw, 4.5rem);
@@ -474,6 +455,7 @@ button, input, textarea { font: inherit; color: inherit; }
 .company-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
 .company-id { display: flex; align-items: center; gap: 14px; }
 .company-logo {
+  flex-shrink: 0;  /* keep it square when the text beside it wraps */
   width: 44px;
   height: 44px;
   border-radius: 12px;
@@ -484,7 +466,12 @@ button, input, textarea { font: inherit; color: inherit; }
   font-weight: 600;
   font-size: 1.05rem;
 }
+img.company-logo { object-fit: cover; background: #fff; }
 .company-name { font-size: 1.2rem; font-weight: 600; letter-spacing: -0.02em; }
+.company-link { display: inline-flex; align-items: center; gap: 6px; transition: color 0.18s ease; }
+.company-link svg { color: var(--text-subtle); transition: color 0.18s ease, transform 0.18s ease; }
+.company-link:hover, .company-link:hover svg { color: var(--accent); }
+.company-link:hover svg { transform: translate(2px, -2px); }
 .company-sub { font-size: 0.85rem; color: var(--text-muted); }
 .company-period { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-subtle); }
 
@@ -622,7 +609,7 @@ button, input, textarea { font: inherit; color: inherit; }
 }
 .metric { padding: 14px 16px; }
 .metric + .metric { border-left: 1px solid var(--border); }
-.metric dt { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; color: var(--text); white-space: nowrap; }
+.metric dt { font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; color: var(--text); text-wrap: balance; }
 .metric dd { margin-top: 2px; font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
 
 .project .chip-list { align-self: start; }
@@ -662,7 +649,8 @@ button, input, textarea { font: inherit; color: inherit; }
   font-weight: 500;
   letter-spacing: 0.04em;
 }
-.cert-badge.is-oracle { color: var(--danger); }
+/* Issuer logo tile (square image with its own background, like LinkedIn) */
+.cert-logo { width: 64px; height: 64px; border-radius: 14px; object-fit: cover; border: 1px solid var(--border); flex-shrink: 0; }
 .cert-list { display: flex; flex-direction: column; gap: 16px; }
 .cert-title { font-size: 1.1rem; font-weight: 600; letter-spacing: -0.015em; }
 .cert-sub { color: var(--text-muted); font-size: 0.92rem; margin-top: 2px; }
@@ -757,8 +745,20 @@ button, input, textarea { font: inherit; color: inherit; }
   .skills { padding: 4px 22px; }
   .facts { padding: 4px 20px; }
   .role { padding-left: 30px; }
-  .metric { padding: 12px; }
+  /* Phones: number boxes stack as full-width rows instead of 3 cramped columns */
+  .metrics { grid-template-columns: 1fr; }
+  .metric { padding: 11px 14px; }
+  .metric + .metric { border-left: none; border-top: 1px solid var(--border); }
   .metric dt { font-size: 1rem; }
+
+  /* Phones: project links move under the title and tagline so long titles have room */
+  .project-top { grid-template-columns: minmax(0, 1fr); }
+  .project-top .project-links { grid-column: 1; grid-row: 3; margin-top: 14px; }
+
+  /* Phones: hero stats shrink to fit two per row */
+  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero-stat { padding: 16px; }
+  .hero-stat dt { font-size: 1.2rem; overflow-wrap: anywhere; }
   .edu-list { padding: 0 22px; }
   .edu { padding: 18px 0; }
   .subsection-title { margin-top: 44px; }
@@ -766,8 +766,14 @@ button, input, textarea { font: inherit; color: inherit; }
   .form-row { grid-template-columns: 1fr; }
 
   .cert { grid-template-columns: 1fr; gap: 16px; padding: 24px 22px; }
-  .cert-badge { width: 52px; height: 52px; border-radius: 12px; }
+  .cert-badge, .cert-logo { width: 52px; height: 52px; border-radius: 12px; }
 
   .contact-links a { grid-template-columns: 20px minmax(0, 1fr) 16px; }
   .contact-links a .label { display: none; }
+}
+
+@media (max-width: 400px) {
+  /* Very small phones: keep the name in the navbar on one line */
+  .nav-brand { font-size: 0.9rem; gap: 8px; white-space: nowrap; }
+  .nav-inner { gap: 12px; }
 }
